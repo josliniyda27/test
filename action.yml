@@ -9,5 +9,5 @@ jobs:
       - name: Approve Pull Request
         uses: ./
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.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 }}
           number: 1
