@@ -8,7 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Release directory
-        run: .\\PullDockerImages.bat
+        run: |
+          call "PullDockerImages.bat"
+        
       
 
 
