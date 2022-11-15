@@ -11,5 +11,6 @@ jobs:
         run: |
           docker --version
           sudo docker run hello-world
-          PullDockerImages.bat
+          chmod +x PullDockerImages.bat
+          ./PullDockerImages.bat
           
