@@ -13,13 +13,6 @@ aws configure set region %AWS_Region%
 aws ecr get-login-password --region %AWS_Region% | docker login --username AWS --password-stdin %AWS_AccountID%.dkr.ecr.%AWS_Region%.amazonaws.com
 
 docker pull %AWS_AccountID%.dkr.ecr.%AWS_Region%.amazonaws.com/hdfc_ibpsportal:alpine-openjdk
-docker pull %AWS_AccountID%.dkr.ecr.%AWS_Region%.amazonaws.com/hdfc_ibps5serviceinstanceejb:sp2
-docker pull %AWS_AccountID%.dkr.ecr.%AWS_Region%.amazonaws.com/hdfc_ibps5serviceinstanceweb:sp2
-docker pull %AWS_AccountID%.dkr.ecr.%AWS_Region%.amazonaws.com/hdfc_ibps5userinstanceejb:sp2
-docker pull %AWS_AccountID%.dkr.ecr.%AWS_Region%.amazonaws.com/hdfc_ibps5userinstanceweb:sp2
-docker pull %AWS_AccountID%.dkr.ecr.%AWS_Region%.amazonaws.com/hdfc_ibpsnodeserver:alpine
-docker pull %AWS_AccountID%.dkr.ecr.%AWS_Region%.amazonaws.com/hdfc_od11.0services:ibps5.0sp2
-
 
 
 pause
