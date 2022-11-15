@@ -1,7 +1,7 @@
 set AWS_AccessKey=AKIAVFAJTEYIY7TQZFEE
 set AWS_SecretKey=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
 set AWS_AccountID=354354931217
-set AWS_Region=ap-south-1
+set AWS_Region="ap-south-1"
 
 aws configure set aws_access_key_id %AWS_AccessKey%
 aws configure set aws_secret_access_key %AWS_SecretKey%
