@@ -1,6 +1,3 @@
-@echo off
-
-@REM RedHat Temp Account:
 set AWS_AccessKey=AKIAVFAJTEYIY7TQZFEE
 set AWS_SecretKey=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
 set AWS_AccountID=354354931217
@@ -14,5 +11,3 @@ aws ecr get-login-password --region %AWS_Region% | docker login --username AWS -
 
 docker pull %AWS_AccountID%.dkr.ecr.%AWS_Region%.amazonaws.com/hdfc_ibpsportal:alpine-openjdk
 docker pull %AWS_AccountID%.dkr.ecr.%AWS_Region%.amazonaws.com/hdfc_ibps5serviceinstanceejb:sp2
-
-pause
