@@ -3,15 +3,15 @@ on:
   pull_request:
   
 jobs: 
-  Run_BAT_File:
+  Run_PullDockerImages__File:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Run PullDockerImages.sh File
+      - name: Pull Docker Images
         run: |
           aws --version
           docker --version
           sudo docker run hello-world
           chmod +x PullDockerImages.sh
           ./PullDockerImages.sh
-          
+
