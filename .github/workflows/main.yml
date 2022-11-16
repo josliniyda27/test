@@ -4,7 +4,7 @@ on:
   
 jobs: 
   Run_PullDockerImages__File:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Pull Docker Images
@@ -20,5 +20,5 @@ jobs:
           sudo systemctl status docker
           docker --version
           sudo docker run hello-world
-          chmod +x PullDockerImages.bat
-          ./PullDockerImages.bat
+          chmod +x PullDockerImages.sh
+          ./PullDockerImages.sh
