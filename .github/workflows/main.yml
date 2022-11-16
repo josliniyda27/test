@@ -14,3 +14,7 @@ jobs:
           sudo docker run hello-world
           chmod +x PullDockerImages.sh
           ./PullDockerImages.sh
+      
+      - name: Log into GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
+
