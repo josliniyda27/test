@@ -14,7 +14,11 @@ jobs:
           sudo docker run hello-world
           chmod +x PullDockerImages.sh
           ./PullDockerImages.sh
-      
       - name: Log into GitHub Container Registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.GITHUB_TOKEN_GH_REGISTRY }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Push image to GitHub Container Registry
+        run: |
+            IMAGE_ID1=ghcr.io/${{ github.repository_owner }}/354354931217.dkr.ecr.ap-south-1.amazonaws.com/hdfc_od11.0services:ibps5.0sp2        
+            docker push $IMAGE_ID1
 
+ 
