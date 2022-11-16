@@ -1,13 +1,13 @@
-set AWS_AccessKey=AKIAVFAJTEYIY7TQZFEE
+AWS_AccessKey=AKIAVFAJTEYIY7TQZFEE
 echo "AWS_AccessKey $AWS_AccessKey"
 
-set AWS_SecretKey=af+EgeLhdtaIv1r4IyOBP55F6TD8ZsXWG9ZhWf/M
+AWS_SecretKey=af+EgeLhdtaIv1r4IyOBP55F6TD8ZsXWG9ZhWf/M
 echo "AWS_SecretKey $AWS_SecretKey"
 
-set AWS_AccountID=354354931217
+AWS_AccountID=354354931217
 echo "AWS_AccountID $AWS_AccountID"
 
-set AWS_Region=ap-south-1
+AWS_Region=ap-south-1
 echo "AWS_Region $AWS_Region"
 
 aws configure set aws_access_key_id $AWS_AccessKey
