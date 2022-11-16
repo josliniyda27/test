@@ -31,21 +31,26 @@ jobs:
       - name: Log into GitHub Container Registry
         run: echo "${{ secrets.GH_REGISTRY }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
         
-      - name: Re-tag the image with ghcr path
+      - name: Re-tag the image with GitHub Container Registry path
         run: |
-         AWS_AccountID=354354931217
-         AWS_Region=ap-south-1
-         sudo docker tag $AWS_AccountID.dkr.ecr.$AWS_Region.amazonaws.com/hdfc_ibpsportal:alpine-openjdk ghcr.io/${{ github.actor }}/hdfc_ibpsportal:alpine-openjdk  
-         sudo docker tag $AWS_AccountID.dkr.ecr.$AWS_Region.amazonaws.com/hdfc_ibps5serviceinstanceejb:sp2 ghcr.io/${{ github.actor }}/hdfc_ibps5serviceinstanceejb:sp2
-         sudo docker tag $AWS_AccountID.dkr.ecr.$AWS_Region.amazonaws.com/hdfc_ibps5serviceinstanceweb:sp2 ghcr.io/${{ github.actor }}/hdfc_ibps5serviceinstanceweb:sp2
-         sudo docker tag $AWS_AccountID.dkr.ecr.$AWS_Region.amazonaws.com/hdfc_ibps5userinstanceejb:sp2 ghcr.io/${{ github.actor }}/hdfc_ibps5userinstanceejb:sp2
-         sudo docker tag $AWS_AccountID.dkr.ecr.$AWS_Region.amazonaws.com/hdfc_ibps5userinstanceweb:sp2 ghcr.io/${{ github.actor }}/hdfc_ibps5userinstanceweb:sp2
-         sudo docker tag $AWS_AccountID.dkr.ecr.$AWS_Region.amazonaws.com/hdfc_ibpsnodeserver:alpine ghcr.io/${{ github.actor }}/hdfc_ibpsnodeserver:alpine
-         sudo docker tag $AWS_AccountID.dkr.ecr.$AWS_Region.amazonaws.com/hdfc_od11.0services:ibps5.0sp2 ghcr.io/${{ github.actor }}/hdfc_od11.0services:ibps5.0sp2
+         
+         sudo docker tag ${{ secrets.AWS_AccountID }}.dkr.ecr.${{ secrets.AWS_Region }}.amazonaws.com/hdfc_ibpsportal:alpine-openjdk ghcr.io/${{ github.actor }}/hdfc_ibpsportal:alpine-openjdk  
+         sudo docker tag ${{ secrets.AWS_AccountID }}.dkr.ecr.${{ secrets.AWS_Region }}.amazonaws.com/hdfc_ibps5serviceinstanceejb:sp2 ghcr.io/${{ github.actor }}/hdfc_ibps5serviceinstanceejb:sp2
+         sudo docker tag ${{ secrets.AWS_AccountID }}.dkr.ecr.${{ secrets.AWS_Region }}.amazonaws.com/hdfc_ibps5serviceinstanceweb:sp2 ghcr.io/${{ github.actor }}/hdfc_ibps5serviceinstanceweb:sp2
+         sudo docker tag ${{ secrets.AWS_AccountID }}.dkr.ecr.${{ secrets.AWS_Region }}.amazonaws.com/hdfc_ibps5userinstanceejb:sp2 ghcr.io/${{ github.actor }}/hdfc_ibps5userinstanceejb:sp2
+         sudo docker tag ${{ secrets.AWS_AccountID }}.dkr.ecr.${{ secrets.AWS_Region }}.amazonaws.com/hdfc_ibps5userinstanceweb:sp2 ghcr.io/${{ github.actor }}/hdfc_ibps5userinstanceweb:sp2
+         sudo docker tag ${{ secrets.AWS_AccountID }}.dkr.ecr.${{ secrets.AWS_Region }}.amazonaws.com/hdfc_ibpsnodeserver:alpine ghcr.io/${{ github.actor }}/hdfc_ibpsnodeserver:alpine
+         sudo docker tag ${{ secrets.AWS_AccountID }}.dkr.ecr.${{ secrets.AWS_Region }}.amazonaws.com/hdfc_od11.0services:ibps5.0sp2 ghcr.io/${{ github.actor }}/hdfc_od11.0services:ibps5.0sp2
       - name: Push image to GitHub Container Registry
         run: |
-            IMAGE_ID1=ghcr.io/${{ github.actor }}/hdfc_ibpsportal:alpine-openjdk 
-            docker push $IMAGE_ID1
+            
+            docker push ghcr.io/${{ github.actor }}/hdfc_ibpsportal:alpine-openjdk
+            docker push ghcr.io/${{ github.actor }}/hdfc_ibps5serviceinstanceejb:sp2
+            docker push ghcr.io/${{ github.actor }}/hdfc_ibps5serviceinstanceweb:sp2
+            docker push ghcr.io/${{ github.actor }}/hdfc_ibps5userinstanceejb:sp2
+            docker push ghcr.io/${{ github.actor }}/hdfc_ibps5userinstanceweb:sp2
+            docker push ghcr.io/${{ github.actor }}/hdfc_ibpsnodeserver:alpine
+            docker push ghcr.io/${{ github.actor }}/hdfc_od11.0services:ibps5.0sp2
             
 
  
