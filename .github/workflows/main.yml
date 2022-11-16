@@ -10,9 +10,7 @@ jobs:
       - name: Pull Docker Images
         run: |
           docker --version
-          sudo apt-get install awscli
           aws --version
-          aws-cli/2.0.30 Python/3.7.3 Linux/4.14.181-142.260.amzn2.x86_64 botocore/2.0.0dev34
           chmod +x PullDockerImages.sh
           ./PullDockerImages.sh
           
