@@ -12,7 +12,7 @@ echo "AWS_Region $AWS_Region"
 
 aws configure set aws_access_key_id $AWS_AccessKey
 aws configure set aws_secret_access_key $AWS_SecretKey
-aws configure set region $AWS_Region
+aws configure set region ap-south-1
 
 aws ecr get-login-password --region $AWS_Region$ | docker login --username AWS --password-stdin $AWS_AccountID$.dkr.ecr.$AWS_Region$.amazonaws.com
 
