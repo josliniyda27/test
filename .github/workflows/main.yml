@@ -7,10 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Run PullDockerImages.bat File
+      - name: Run PullDockerImages.sh File
         run: |
+          aws --version
           docker --version
           sudo docker run hello-world
-          chmod +x PullDockerImages.bat
-          ./PullDockerImages.bat
+          chmod +x PullDockerImages.sh
+          ./PullDockerImages.sh
           
