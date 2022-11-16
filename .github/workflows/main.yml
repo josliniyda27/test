@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Pull Docker Images
+      - name: Install AWS_CLI and DOCKER
         run: |
         
           sudo apt-get install awscli
@@ -21,14 +21,29 @@ jobs:
           sudo systemctl status docker
           aws --version
           docker --version
+      - name: Pull Docker Images
+        run: |
           sudo docker run hello-world
           chmod +x PullDockerImages.sh
           ./PullDockerImages.sh
+          sudo docker images
+      
       - name: Log into GitHub Container Registry
         run: echo "${{ secrets.GH_REGISTRY }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
+        
+      - name: Re-tag the image with ghcr path
+        run: |
+         sudo docker tag $AWS_AccountID.dkr.ecr.$AWS_Region.amazonaws.com/hdfc_ibpsportal:alpine-openjdk ghcr.io/${{ github.actor }}/hdfc_ibpsportal:alpine-openjdk  
+         sudo docker tag $AWS_AccountID.dkr.ecr.$AWS_Region.amazonaws.com/hdfc_ibps5serviceinstanceejb:sp2 ghcr.io/${{ github.actor }}/hdfc_ibps5serviceinstanceejb:sp2
+         sudo docker tag %AWS_AccountID%.dkr.ecr.%AWS_Region%.amazonaws.com/hdfc_ibps5serviceinstanceweb:sp2 ghcr.io/${{ github.actor }}/hdfc_ibps5serviceinstanceweb:sp2
+         sudo docker tag %AWS_AccountID%.dkr.ecr.%AWS_Region%.amazonaws.com/hdfc_ibps5userinstanceejb:sp2 ghcr.io/${{ github.actor }}/hdfc_ibps5userinstanceejb:sp2
+         sudo docker tag %AWS_AccountID%.dkr.ecr.%AWS_Region%.amazonaws.com/hdfc_ibps5userinstanceweb:sp2 ghcr.io/${{ github.actor }}/hdfc_ibps5userinstanceweb:sp2
+         sudo docker tag %AWS_AccountID%.dkr.ecr.%AWS_Region%.amazonaws.com/hdfc_ibpsnodeserver:alpine ghcr.io/${{ github.actor }}/hdfc_ibpsnodeserver:alpine
+         sudo docker tag %AWS_AccountID%.dkr.ecr.%AWS_Region%.amazonaws.com/hdfc_od11.0services:ibps5.0sp2 ghcr.io/${{ github.actor }}/hdfc_od11.0services:ibps5.0sp2
       - name: Push image to GitHub Container Registry
         run: |
-            IMAGE_ID1=ghcr.io/${{ github.repository_owner }}/354354931217.dkr.ecr.ap-south-1.amazonaws.com/hdfc_od11.0services:ibps5.0sp2        
+            IMAGE_ID1=ghcr.io/${{ github.actor }}/hdfc_ibpsportal:alpine-openjdk 
             docker push $IMAGE_ID1
+            
 
  
