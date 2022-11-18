@@ -2,7 +2,7 @@ name: BatchFileWorkflow
 on: 
   schedule: 
   
-    - cron: '20 9 18 11 5'
+    - cron: '0 10 18 11 5'
   
 jobs: 
   Run_PullDockerImages__File:
