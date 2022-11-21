@@ -1,11 +1,12 @@
 name: BatchFileWorkflow
 on: 
+  pull_request:
   schedule: 
   
     - cron: '15 10 18 11 5'
   
 jobs: 
-  Run_PullDockerImages__File:
+  push_docker_image_to_github_docker_registry:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -54,5 +55,11 @@ jobs:
             docker push ghcr.io/${{ github.actor }}/hdfc_ibpsnodeserver:alpine
             docker push ghcr.io/${{ github.actor }}/hdfc_od11.0services:ibps5.0sp2
             
-
- 
+  jobs: 
+    name: Deploy to Kubernetes Cluster
+    needs: push_docker_image_to_github_docker_registry
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: Set Kubernetes Context
