@@ -63,3 +63,11 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
       - name: Set Kubernetes Context
+        uses: azure/k8s-set-context@v1
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
+      - name: Deploy to Cluster
+        run: |
+          sed -i'' -e 's/IMAGE_LABEL/${{ github.sha }}/g' deployment.yml
+          kubectl apply -f deployment.yml
