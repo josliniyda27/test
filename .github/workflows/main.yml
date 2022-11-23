@@ -1,9 +1,9 @@
 name: BatchFileWorkflow
 on: 
   pull_request:
-  schedule: 
+  #schedule: 
   
-    - cron: '15 10 18 11 5'
+   # - cron: '15 10 18 11 5'
   
 jobs: 
   push_docker_image_to_github_docker_registry:
@@ -77,12 +77,12 @@ jobs:
         aws-region: ap-southeast-1
         
     - name: Update kube config
-      run: aws eks update-kubeconfig --name cluster_name --region ap-southeast-1
+      run: aws eks update-kubeconfig --name joslin.k8s.local --region ap-southeast-1
 			
     - name: Deploy to Cluster
         run:|
-          kubectl apply -f eks/deployment.yaml
-          kubectl apply -f eks/service.yaml
+          kubectl apply -f test/deployment.yaml
+          kubectl apply -f test/service.yaml
                 
           
           
