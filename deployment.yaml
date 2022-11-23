@@ -14,8 +14,7 @@ spec:
       labels:
         app: sample-deployment
    spec:
-     containers:
-    	# when pulling from github packages 
+     containers: #when pulling from github packages 
     	- image: docker ghcr.io/josliniyda27/hdfc_ibpsportal:alpine-openjdk     
    spec:
      containers:
