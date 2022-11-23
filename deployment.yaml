@@ -13,16 +13,14 @@ spec:
     metadata:
       labels:
         app: sample-deployment
-
    spec:
      containers:
     	# when pulling from github packages 
-    	- image: docker.pkg.github.com/myGithubUsername/myRepo/myPackage:tag
-
-    spec:
-      containers:
-      - name: sample-deployment
-        image: 095420225348.dkr.ecr.eu-west-1.amazonaws.com/simplebank:latest
+    	- image: docker ghcr.io/josliniyda27/hdfc_ibpsportal:alpine-openjdk     
+   spec:
+     containers:
+      - name: sample-deployment1
+        image: hdfc_ibpsportal:alpine-openjdk
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
