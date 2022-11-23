@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: sample-api-service
+  name: LoadBalancer-service
 spec:
   selector:
     app: sample-deployment
@@ -9,4 +9,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8080
-  type: ClusterIP
+  type: LoadBalancer
