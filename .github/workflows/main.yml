@@ -1,4 +1,4 @@
-name: BatchFileWorkflow
+name: CD_Workflow
 on: 
   pull_request:
   #schedule: 
