@@ -16,7 +16,7 @@ spec:
     spec:
      containers:
       - name: sample-deployment
-        image: hdfc_ibps5userinstanceejb:sp2
+        image: ghcr.io/josliniyda27/hdfc_ibps5userinstanceejb:sp2
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
