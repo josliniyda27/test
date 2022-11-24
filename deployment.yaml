@@ -12,14 +12,11 @@ spec:
   template:
     metadata:
       labels:
-        app: sample-deployment
-   spec:
-     containers: #when pulling from github packages 
-    	- image: docker ghcr.io/josliniyda27/hdfc_ibpsportal:alpine-openjdk     
-   spec:
+        app: sample-deployment   
+    spec:
      containers:
-      - name: sample-deployment1
-        image: hdfc_ibpsportal:alpine-openjdk
+      - name: sample-deployment
+        image: hdfc_ibps5userinstanceejb:sp2
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
