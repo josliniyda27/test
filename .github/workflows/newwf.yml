@@ -36,5 +36,5 @@ jobs :
          
         - name: Push image to GitHub Container Registry
           run: |
-                    docker push httpd ghcr.io/${{ github.actor }}/httpd:01
+                    docker push ghcr.io/${{ github.actor }}/httpd:01
             
