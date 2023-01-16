@@ -1,7 +1,11 @@
 name: CD_Workflow
 on:  
-    job: 
-        push_docker_image_to_github_docker_registry:
+ push:
+    branches: [ "main" ]
+ pull_request:
+    branches: [ "main" ]
+jobs : 
+    push_docker_image_to_github_docker_registry:
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v3
