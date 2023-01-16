@@ -1,0 +1,36 @@
+name: CD_Workflow
+on:  
+    job: 
+        push_docker_image_to_github_docker_registry:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v3
+        - name: Install AWS_CLI and DOCKER
+          run: |
+                sudo apt-get remove docker docker-engine docker.io containerd runc
+                sudo apt-get update
+                sudo apt install apt-transport-https ca-certificates curl software-properties-common
+                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+                sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+                apt-cache policy docker-ce
+                sudo apt install docker-ce
+                sudo systemctl status docker
+                docker --version
+        - name: Pull Docker Images
+          run: |
+              sudo docker pull httpd
+              #chmod +x PullDockerImages.sh
+              #./PullDockerImages.sh
+              sudo docker images
+      
+        - name: Log into GitHub Container Registry
+          run: echo "${{ secrets.GH_REGISTRY }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
+        
+        - name: Re-tag the image with GitHub Container Registry path
+          run: |
+                   sudo docker tag ${{ secrets.AWS_AccountID }}.dkr.ecr.${{ secrets.AWS_Region }}.amazonaws.com/hdfc_ibpsportal:alpine-openjdk ghcr.io/${{ github.actor }}/hdfc_ibpsportal:alpine-openjdk  
+         
+        - name: Push image to GitHub Container Registry
+          run: |
+                    docker push ghcr.io/${{ github.actor }}/hdfc_ibpsportal:alpine-openjdk
+            
