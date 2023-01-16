@@ -28,9 +28,9 @@ on:
         
         - name: Re-tag the image with GitHub Container Registry path
           run: |
-                   sudo docker tag ${{ secrets.AWS_AccountID }}.dkr.ecr.${{ secrets.AWS_Region }}.amazonaws.com/hdfc_ibpsportal:alpine-openjdk ghcr.io/${{ github.actor }}/hdfc_ibpsportal:alpine-openjdk  
+                   sudo docker tag httpd ghcr.io/${{ github.actor }}/httpd:01  
          
         - name: Push image to GitHub Container Registry
           run: |
-                    docker push ghcr.io/${{ github.actor }}/hdfc_ibpsportal:alpine-openjdk
+                    docker push httpd ghcr.io/${{ github.actor }}/httpd:01
             
