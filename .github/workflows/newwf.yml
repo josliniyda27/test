@@ -24,7 +24,7 @@ on:
               sudo docker images
       
         - name: Log into GitHub Container Registry
-          run: echo "${{ secrets.GH_REGISTRY }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
+          run: echo "${{ secrets.GH_CONTAINER_REGISTRY_PAT }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
         
         - name: Re-tag the image with GitHub Container Registry path
           run: |
