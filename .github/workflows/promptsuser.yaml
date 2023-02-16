@@ -1,0 +1,25 @@
+name: Read Excel File Name
+
+on: [push]
+
+jobs:
+  get_excel_file_name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Prompt for Excel file name
+        uses: actions/toolkit@v2.4.1
+        with:
+          prompt: 'Enter the name of the Excel file:'
+          silent: false
+        env: 
+            INPUT_EXCEL_FILENAME: ${{ env.INPUT }}
+
+      - name: Get Excel file path
+        id: get_excel_file_path
+        run: echo "::set-output name=path::$(find . -type f -name '${{ env.INPUT_EXCEL_FILENAME }}')"
+
+      - name: Use the Excel file
+        run: echo "The Excel file path is ${{ steps.get_excel_file_path.outputs.path }}"
